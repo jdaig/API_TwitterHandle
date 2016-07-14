@@ -1,0 +1,17 @@
+.container {
+  margin: 20px auto;
+  width: 600px;
+  padding: 0px 20px 20px 20px;
+  border: 1px dotted black;
+}
+th {
+  text-align: left;
+}
+
+#handle_btn {
+  padding: 2em;
+  background-color: #63ADEE;
+  border-radius: 1em;
+  font-family: verdana;
+  color: white; 
+}
