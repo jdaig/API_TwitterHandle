@@ -20,17 +20,11 @@ require "sinatra/reloader" if development?
 
 require 'erb'
 
+require 'bcrypt'
+
 require 'twitter'
-
-# Se pone en mayusculas pues en minusculas no lo detectaba pues el controller
-# lo pensaba como una variable local, y de este modo se vuelve una constante
-CLIENT = Twitter::REST::Client.new do |config|
-  config.consumer_key        = "NxgmM9uC4xFlqw6eZbfAeSo82"
-  config.consumer_secret     = "YhVOsdWmigMPi704iLOo7v6MM3GcwAJxs4oYMHHFKeCDSecNKz"
-  config.access_token        = "744956354402496512-0oQPEhY1RNsEhL5eLsGugWZBXhG6y3d"
-  config.access_token_secret = "16lk0RF17YeYynwjnoDryPWOPKN9k1jPDg1cSv6HOD6Dn"
-end
-
+require 'yaml'
+require 'oauth'
 
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
 
@@ -43,3 +37,19 @@ Dir[APP_ROOT.join('app', 'uploaders', '*.rb')].each { |file| require file }
 
 # Configura la base de datos y modelos 
 require APP_ROOT.join('config', 'database')
+
+# En esta linea se reconoce el yaml para poder usar las keys que estan ocultas
+env_config = YAML.load_file(APP_ROOT.join('config', 'twitter.yaml'))
+
+env_config.each do |key,value|
+  ENV[key]=value
+end
+
+# Se pone en mayusculas pues en minusculas no lo detectaba pues el controller
+# lo pensaba como una variable local, y de este modo se vuelve una constante
+CLIENT = Twitter::REST::Client.new do |config|
+  config.consumer_key        = ENV['TWITTER_KEY']
+  config.consumer_secret     = ENV['TWITTER_SECRET']
+  config.access_token        = ENV['ACCESS_TOKEN']
+  config.access_token_secret = ENV['ACCESS_TOKEN_SECRET']
+end

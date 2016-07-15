@@ -1,17 +1,15 @@
-require 'bcrypt'
-
 class TwitterUser < ActiveRecord::Base
   # Remember to create a migration!
 
   include BCrypt
 
-  has many :tweets
+  has_many :tweets
 
   validates :usuario , presence: true , confirmation: true
-  validates :mail , presence: true , confirmation: true
-  validates :password , presence: true , confirmation: true
+  # validates :mail , presence: true , confirmation: true
+  # validates :password , presence: true , confirmation: true
   validates :usuario, uniqueness: true
-  validates :mail, uniqueness: true
+  # validates :mail, uniqueness: true
 
  
   def password

@@ -1,0 +1,25 @@
+  <h1>Wellcome to API Twitter!</h1>
+  <h2>Estos son tus tweets <%= @thandle%>:</h2>
+  
+  <% if @ary_tweets%>
+    <% @ary_tweets.each do |tweet|%>
+    <%= "> " + tweet.text%>
+    <br>
+    <%end%>
+  <% elsif @ary_tweets_db %>
+    <% @ary_tweets_db.each do |tweet|%>
+    <%= "> " + tweet.tweetTEXT%>
+    <br>
+    <%end%>
+  <%end%>
+
+  <br>
+  <form id="handle_user" action="/fetch_u" method="post">
+  <input type="hidden" name="hiddenth" value="<%=@thandle%>">
+  <input id="handle_btn" type="submit" value="Refresh">
+  </form>
+
+  <br>
+  <form id="back" action="/" method="get">
+  <input id="handle_btn" type="submit" value="Back">
+  </form>

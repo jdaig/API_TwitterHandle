@@ -18,6 +18,7 @@ gem 'rake'
 gem 'shotgun'
 
 gem 'twitter'
+gem 'oauth'
 gem 'bcrypt'
 
 group :test do

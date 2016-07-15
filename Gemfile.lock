@@ -45,6 +45,7 @@ GEM
     multi_json (1.12.1)
     multipart-post (2.0.0)
     naught (1.1.0)
+    oauth (0.5.1)
     pg (0.18.4)
     rack (1.6.4)
     rack-protection (1.5.3)
@@ -110,6 +111,7 @@ DEPENDENCIES
   activesupport
   bcrypt
   faker
+  oauth
   pg
   rake
   rspec
